@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Movie Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+ 
+
+  <ion-list>
+ 
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/', 'movies', item.id]">
+      <ion-avatar slot="start">
+        <img src="https://image.tmdb.org/t/p/w92{{item.poster_path}}"/>
+      </ion-avatar>
+
+      <ion-label text-wrap>
+        <h1>{{ item.title }}</h1>
+        {{ item.overview }}
+      </ion-label> 
+ 
+    </ion-item>
+ 
+  </ion-list>
+ 
+</ion-content>
